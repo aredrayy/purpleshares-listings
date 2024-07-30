@@ -109,19 +109,19 @@ export default function Listing() {
   const sortedBusinesses = useMemo(() => {
     return filteredBusinesses.sort((a, b) => {
       if (sortBy === "name") {
-        return sortOrder === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+          return sortOrder === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
       } else if (sortBy === "createdAt") {
-        return sortOrder === "asc"
-          ? new Date(a.createdAt) - new Date(b.createdAt)
-          : new Date(b.createdAt) - new Date(a.createdAt)
+          return sortOrder === "asc" 
+          ? new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime() 
+          : new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
       } else if (sortBy === "sellingPrice") {
-        return sortOrder === "asc" ? a.sellingPrice - b.sellingPrice : b.sellingPrice - a.sellingPrice
+          return sortOrder === "asc" ? a.sellingPrice - b.sellingPrice : b.sellingPrice - a.sellingPrice;
       } else if (sortBy === "listingDate") {
-        return sortOrder === "asc"
-          ? new Date(a.listingDate) - new Date(b.listingDate)
-          : new Date(b.listingDate) - new Date(a.listingDate)
+          return sortOrder === "asc" 
+          ? new Date(a.listingDate).getTime() - new Date(b.listingDate).getTime() 
+          : new Date(b.listingDate).getTime() - new Date(a.listingDate).getTime();
       } else {
-        return 0
+          return 0;
       }
     })
   }, [filteredBusinesses, sortBy, sortOrder])
