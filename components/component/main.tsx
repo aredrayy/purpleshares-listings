@@ -21,7 +21,7 @@ export default function Listing() {
     sellingPrice: null,
     listingDate: null,
   })
-  const [sortBy, setSortBy] = useState(null)
+  const [sortBy, setSortBy] = useState<string | null | undefined>(null);
   const [sortOrder, setSortOrder] = useState("asc")
   const [isTableView, setIsTableView] = useState(false)
   const businesses = [
@@ -134,13 +134,12 @@ export default function Listing() {
 
   const handleSortChange = (key: string, value: any) => {
     if (sortBy === key) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+      setSortBy(value);
     } else {
-      // @ts-ignore
       setSortBy(key)
       setSortOrder("asc")
     }
-  }
+  };
   const handleViewChange = () => {
     setIsTableView(!isTableView)
   }
@@ -268,7 +267,7 @@ export default function Listing() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuRadioGroup value={sortBy} onValueChange={handleSortChange}>
+              <DropdownMenuRadioGroup value={sortBy || ""} onValueChange={(value) => handleSortChange('sortBy', value)}>
                   <DropdownMenuRadioItem value="name">Name</DropdownMenuRadioItem>
                   <DropdownMenuRadioItem value="createdAt">Created At</DropdownMenuRadioItem>
                   <DropdownMenuRadioItem value="sellingPrice">Selling Price</DropdownMenuRadioItem>
@@ -380,10 +379,17 @@ export default function Listing() {
   )
 }
 
-function ChevronDownIcon(props) {
+interface Props {
+  // define the properties and their types here
+  color?: string;
+  size?: number;
+  // add more properties as needed
+}
+
+function ChevronDownIcon(Props: Props) {
   return (
     <svg
-      {...props}
+      {...Props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -400,10 +406,10 @@ function ChevronDownIcon(props) {
 }
 
 
-function ImageIcon(props) {
+function ImageIcon(Props: Props) {
   return (
     <svg
-      {...props}
+      {...Props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -422,10 +428,10 @@ function ImageIcon(props) {
 }
 
 
-function LayoutGridIcon(props) {
+function LayoutGridIcon(Props: Props) {
   return (
     <svg
-      {...props}
+      {...Props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -445,10 +451,10 @@ function LayoutGridIcon(props) {
 }
 
 
-function ListIcon(props) {
+function ListIcon(Props: Props) {
   return (
     <svg
-      {...props}
+      {...Props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -470,10 +476,10 @@ function ListIcon(props) {
 }
 
 
-function XIcon(props) {
+function XIcon(Props: Props) {
   return (
     <svg
-      {...props}
+      {...Props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
