@@ -2,32 +2,120 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 240 5% 6%; /* Midnight background */
+    --foreground: 60 5% 90%; /* Light foreground */
+    --primary: 270 50% 60%; /* Primary purple */
+    --primary-foreground: 60 0% 0%; /* Dark text on primary */
+    --secondary: 270 50% 40%; /* Secondary purple */
+    --secondary-foreground: 60 5% 85%; /* Light text on secondary */
+    --accent: 270 50% 80%; /* Accent purple */
+    --accent-foreground: 60 0% 100%; /* Light text on accent */
+    --destructive: 0 60% 50%; /* Red for destructive actions */
+    --destructive-foreground: 0 0% 98%; /* Light text on destructive */
+    --muted: 240 5% 25%; /* Muted background */
+    --muted-foreground: 60 5% 85%; /* Light text on muted */
+    --card: 270 50% 20%; /* Dark purple card */
+    --card-foreground: 60 5% 90%; /* Light text on card */
+    --popover: 270 50% 30%; /* Popover background */
+    --popover-foreground: 60 5% 85%; /* Light text on popover */
+    --border: 270 50% 50%; /* Purple border */
+    --input: 270 50% 25%; /* Purple input background */
+    --ring: 270 50% 50%; /* Ring color */
+    --radius: 0.5rem; /* Border radius */
+  }
+
+  .dark {
+    --background: 240 5% 10%; /* Darker midnight background */
+    --foreground: 60 5% 90%; /* Light foreground */
+    --primary: 270 50% 50%; /* Darker primary purple */
+    --primary-foreground: 60 0% 100%; /* Light text on primary */
+    --secondary: 270 50% 35%; /* Darker secondary purple */
+    --secondary-foreground: 60 5% 85%; /* Light text on secondary */
+    --accent: 270 50% 70%; /* Darker accent purple */
+    --accent-foreground: 60 0% 100%; /* Light text on accent */
+    --destructive: 0 60% 50%; /* Red for destructive actions */
+    --destructive-foreground: 0 0% 98%; /* Light text on destructive */
+    --muted: 240 5% 20%; /* Muted background */
+    --muted-foreground: 60 5% 85%; /* Light text on muted */
+    --card: 270 50% 15%; /* Darker purple card */
+    --card-foreground: 60 5% 90%; /* Light text on card */
+    --popover: 270 50% 25%; /* Darker popover background */
+    --popover-foreground: 60 5% 85%; /* Light text on popover */
+    --border: 270 50% 45%; /* Darker purple border */
+    --input: 270 50% 20%; /* Darker purple input background */
+    --ring: 270 50% 45%; /* Darker ring color */
+    --radius: 0.5rem; /* Border radius */
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+@layer base {
+  * {
+    @apply border-border;
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  .card {
+    @apply border border-border text-card-foreground bg-transparent;
+  }
+
+  .gradient-background {
+    background: linear-gradient(135deg, hsl(270, 100%, 50%), hsl(270, 50%, 30%));
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: var(--radius);
+    border: 3px solid hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) hsl(var(--background));
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-radius: var(--radius);
+  }
+
+  *::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border: 3px solid hsl(var(--background));
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
   }
 }
