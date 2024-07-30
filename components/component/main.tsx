@@ -257,13 +257,13 @@ export default function Listing() {
           <h2 className="text-xl font-bold">Business Listings</h2>
           <div className="flex items-center gap-2">
             <Button variant="outline" size="icon" onClick={handleViewChange}>
-              {isTableView ? <LayoutGridIcon className="h-5 w-5" /> : <ListIcon className="h-5 w-5" />}
+              {isTableView ? <LayoutGridIcon/> : <ListIcon/>}
               <span className="sr-only">{isTableView ? "Switch to Card View" : "Switch to Table View"}</span>
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline">
-                  Sort by <ChevronDownIcon className="ml-2 h-4 w-4" />
+                  Sort by <ChevronDownIcon/>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
