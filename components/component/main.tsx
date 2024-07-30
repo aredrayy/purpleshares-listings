@@ -131,10 +131,12 @@ export default function Listing() {
       [key]: value,
     }))
   }
+
   const handleSortChange = (key: string, value: any) => {
     if (sortBy === key) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc")
     } else {
+      // @ts-ignore
       setSortBy(key)
       setSortOrder("asc")
     }
