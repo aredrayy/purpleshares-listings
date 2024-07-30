@@ -125,13 +125,13 @@ export default function Listing() {
       }
     })
   }, [filteredBusinesses, sortBy, sortOrder])
-  const handleFilterChange = (key, value) => {
+  const handleFilterChange = (key: string, value: any) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
       [key]: value,
     }))
   }
-  const handleSortChange = (key) => {
+  const handleSortChange = (key: string, value: any) => {
     if (sortBy === key) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc")
     } else {
